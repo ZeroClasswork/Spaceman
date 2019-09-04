@@ -43,7 +43,8 @@ def get_guessed_word(secret_word, letters_guessed):
         secret_word (string): the random word the user is trying to guess.
         letters_guessed (list of strings): list of letters that have been guessed so far.
     Returns: 
-        string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.  For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
+        string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.
+        For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
     correct_string = ""
     for letter in secret_word:
@@ -110,9 +111,21 @@ def spaceman(secret_word):
             print("Keep going!")
 
 
+running = True
+
+statement = "Let's play a game!"
 #These function calls that will start the game
-secret_word = load_word()
-word_so_far = ""
-for letter in secret_word:
-    word_so_far += "_"
-spaceman(secret_word)
+while running:
+    print(statement)
+    secret_word = load_word()
+    word_so_far = ""
+    for letter in secret_word:
+        word_so_far += "_"
+    spaceman(secret_word)
+    running = ("y" == (input("Would you like to play again? y/n: ")).lower())
+    if not running:
+        print("Okay, bye!")
+    else:
+        statement = "Let's play another game!"
+
+
