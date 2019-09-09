@@ -33,7 +33,6 @@ def is_word_guessed(secret_word, letters_guessed):
         if letter not in letters_guessed:
             return False
     return True
-    pass
 
 
 def get_guessed_word(secret_word, letters_guessed):
@@ -53,7 +52,6 @@ def get_guessed_word(secret_word, letters_guessed):
         else:
             correct_string += "_"
     return correct_string
-    pass
 
 
 def is_guess_in_word(guess, secret_word):
@@ -67,8 +65,6 @@ def is_guess_in_word(guess, secret_word):
     '''
 
     return guess in secret_word
-    pass
-
 
 def spaceman(secret_word):
     '''
@@ -77,7 +73,7 @@ def spaceman(secret_word):
       secret_word (string): the secret word to guess.
     '''
 
-    guess_count = 7
+    guess_count = len(secret_word)
     letters = []
     letters_left = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
@@ -85,8 +81,13 @@ def spaceman(secret_word):
 
     while True:
         #TODO: Ask the player to guess one letter per round and check that it is only one letter
-        guess = (input("Guess one letter (you have " + str(guess_count) + " left): ")).lower()
-        print(guess)
+        guess = "555"
+        while len(guess) != 1 or not guess.isalpha():
+            guess = (input("Guess one letter (you have " + str(guess_count) + " left): ")).lower()
+            if len(guess) != 1:
+                print("Please type exactly one character.")
+            elif not guess.isalpha():
+                print("Please type only letters.")
         #TODO: Check if the guessed letter is in the secret or not and give the player feedback
         if is_guess_in_word(guess, secret_word) and guess not in letters:
             print("Good guess! That's in the word.")
