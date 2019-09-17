@@ -113,22 +113,39 @@ def spaceman(secret_word):
         else:
             print("Keep going!")
 
+def test_is_word_guessed():
+    assert is_word_guessed("awesome", ['a', 'w', 'e', 's', 'o', 'm'])
+    assert not is_word_guessed("awesome", ['a', 'e', 's', 'o', 'm'])
+    assert not is_word_guessed("awesome", [])
+    assert is_word_guessed("awesome", ['e', 'w', 'o', 's', 'm', 'a'])
+    assert is_word_guessed("awesome", ['e', 'l', 'w', 'o', 's', 'm', 'a'])
 
-running = True
+def test_get_guessed_word():
+    assert get_guessed_word("hello", ['h', 'e', 'l', 'o']) == "hello"
+    assert get_guessed_word("hello", ['h', 'w', 'e', 'l', 'o']) == "hello"
+    assert get_guessed_word("hello", ['h', 'e', 'o']) == "he__o"
+    assert get_guessed_word("hello", ['h', 'w', 'l', 'o']) == "h_llo"
+    assert get_guessed_word("hello", []) == "_____"
 
-statement = "Let's play a game!"
-# These function calls that will start the game
-while running:
-    print(statement)
-    secret_word = load_word()
-    word_so_far = ""
-    for letter in secret_word:
-        word_so_far += "_"
-    spaceman(secret_word)
-    running = ("y" == (input("Would you like to play again? y/n: ")).lower())
-    if not running:
-        print("Okay, bye!")
-    else:
-        statement = "Let's play another game!"
+def test_is_guess_in_word():
+    assert not is_guess_in_word('a', "world")
+    assert is_guess_in_word('w', "world")
+    assert not is_guess_in_word(' ', "world")
 
+def run_game():
+    running = True
 
+    statement = "Let's play a game!"
+    # These function calls that will start the game
+    while running:
+        print(statement)
+        secret_word = load_word()
+        word_so_far = ""
+        for letter in secret_word:
+            word_so_far += "_"
+        spaceman(secret_word)
+        running = ("y" == (input("Would you like to play again? y/n: ")).lower())
+        if not running:
+            print("Okay, bye!")
+        else:
+            statement = "Let's play another game!"
