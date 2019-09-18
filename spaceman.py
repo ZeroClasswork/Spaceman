@@ -114,23 +114,24 @@ def spaceman(secret_word):
             print("Keep going!")
 
 def test_is_word_guessed():
-    assert is_word_guessed("awesome", ['a', 'w', 'e', 's', 'o', 'm'])
-    assert not is_word_guessed("awesome", ['a', 'e', 's', 'o', 'm'])
-    assert not is_word_guessed("awesome", [])
-    assert is_word_guessed("awesome", ['e', 'w', 'o', 's', 'm', 'a'])
-    assert is_word_guessed("awesome", ['e', 'l', 'w', 'o', 's', 'm', 'a'])
+    assert is_word_guessed("awesome", ['a', 'w', 'e', 's', 'o', 'm']), "is_word_guessed running incorrectly: should return true when all letters input in order"
+    assert not is_word_guessed("awesome", ['a', 'e', 's', 'o', 'm']), "is_word_guessed running incorrectly: should return false when one letter missing"
+    assert not is_word_guessed("awesome", []), "is_word_guessed running incorrectly: should return false when no letters guessed"
+    assert is_word_guessed("awesome", ['e', 'w', 'o', 's', 'm', 'a']), "is_word_guessed running incorrectly: should return true when all letters present but out of order"
+    assert is_word_guessed("awesome", ['e', 'l', 'w', 'o', 's', 'm', 'a']), "is_word_guessed running incorrectly: should return true when all letters present with an extra"
+    assert not is_word_guessed("awesome", ['p', 'o', 'q', 't', 'r', 'n']), "is_word_guessed running incorrectly: should return false when no letters present with correct number of letters"
 
 def test_get_guessed_word():
-    assert get_guessed_word("hello", ['h', 'e', 'l', 'o']) == "hello"
-    assert get_guessed_word("hello", ['h', 'w', 'e', 'l', 'o']) == "hello"
-    assert get_guessed_word("hello", ['h', 'e', 'o']) == "he__o"
-    assert get_guessed_word("hello", ['h', 'w', 'l', 'o']) == "h_llo"
-    assert get_guessed_word("hello", []) == "_____"
+    assert get_guessed_word("hello", ['h', 'e', 'l', 'o']) == "hello", "get_guessed_word running incorrectly: h, e, l, o should result in output 'hello'"
+    assert get_guessed_word("hello", ['h', 'w', 'e', 'l', 'o']) == "hello", "get_guessed_word running incorrectly: h, w, e, l, o should result in output 'hello'"
+    assert get_guessed_word("hello", ['h', 'e', 'o']) == "he__o", "get_guessed_word running incorrectly: h, e, o should result in output 'he__o'"
+    assert get_guessed_word("hello", ['h', 'w', 'l', 'o']) == "h_llo", "get_guessed_word running incorrectly: h, w, l, o should result in output 'h_llo'"
+    assert get_guessed_word("hello", []) == "_____", "get_guessed_word running incorrectly: an empty list should result in output '_____'"
 
 def test_is_guess_in_word():
-    assert not is_guess_in_word('a', "world")
-    assert is_guess_in_word('w', "world")
-    assert not is_guess_in_word(' ', "world")
+    assert not is_guess_in_word('a', "world"), "is_guess_in_word running incorrectly: 'a' should not be found in 'world'"
+    assert is_guess_in_word('w', "world"), "is_guess_in_word running incorrectly: 'w' should be found in 'world'"
+    assert not is_guess_in_word(' ', "world"), "is_guess_in_word running incorrectly: ' ' should not be found in 'world'"
 
 def run_game():
     running = True
